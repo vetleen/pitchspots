@@ -143,7 +143,11 @@ INSTALLED_APPS = (
     # 'django.contrib.admin',
     # Uncomment the next line to enable admin documentation:
     # 'django.contrib.admindocs',
+    
+    #Mine
     'generic_parts',
+    #Installs
+    'South',
 )
 
 # A sample logging configuration. The only tangible logging

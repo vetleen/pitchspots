@@ -12,6 +12,6 @@
 #from django.contrib.auth.decorators import login_required
 
 #from todotracker.models import Todo
-def frontpageview(request);
+def frontpageview(request):
     output = "Hello"
     return HttpResponse(output)

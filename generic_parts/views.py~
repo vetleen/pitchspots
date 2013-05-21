@@ -13,5 +13,5 @@
 
 #from todotracker.models import Todo
 def frontpageview(request);
-    output = "Helo"
+    output = "Hello"
     return HttpResponse(output)

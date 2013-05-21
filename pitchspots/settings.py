@@ -1,4 +1,4 @@
-# Django settings for ticked project.
+# Django settings for pitchspots project.
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 import os.path
 
@@ -120,10 +120,10 @@ MIDDLEWARE_CLASSES = (
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'ticked.urls'
+ROOT_URLCONF = 'pitchspots.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'ticked.wsgi.application'
+WSGI_APPLICATION = 'pitchspots.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".

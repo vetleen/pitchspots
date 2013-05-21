@@ -1,4 +1,4 @@
-# Django settings for ticked project.
+# Django settings for pitchspots project.
 from django.conf.global_settings import TEMPLATE_CONTEXT_PROCESSORS as TCP
 import os.path
 

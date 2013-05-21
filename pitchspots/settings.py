@@ -147,7 +147,7 @@ INSTALLED_APPS = (
     #Mine
     'generic_parts',
     #Installs
-    'South',
+    'south',
 )
 
 # A sample logging configuration. The only tangible logging

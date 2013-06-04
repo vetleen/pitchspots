@@ -42,8 +42,14 @@ class UpdateForPitchspot(models.Model):
     
 ## Main content of pitchsites
 class IntroductionMainPart(models.Model):
-    pitchspot = models.OneToOneField (Pitchspot, related_name="")
-    
+    ## This is the introduction of the pitchsite - it is mandatory, and there can be only one of these
+    pitchspot = models.OneToOneField (Pitchspot, related_name="introduction_main_part_set")
+    headline = models.CharField(max_length=100)
+    body = models.CharField (max_length=500)
+    call_to_action = models.BooleanField(default=True)
+    priority = models.IntegerField(default=1)
+    def __unicode__(self):
+        return "Introduction for %s, by user %s" % (self.pitchspot.title, self.pitchspot.owner.username)
     
     
     

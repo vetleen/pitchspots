@@ -8,11 +8,10 @@ class Pitchspot(models.Model):
     ## The folowing is the meta information about the pitchspot
     title = models.CharField(max_length=100)
     owner = models.ForeignKey(User, related_name="pitchspots_owned_set")
-    keywords = models.CharField(max_length=500)
-    administrators = models.ManyToManyField(User, related_name="pitchspots_administered_set")
+    administrators = models.ManyToManyField(User, blank=True, null=True, related_name="pitchspots_administered_set")
     is_published = models.BooleanField(default=False)
     date_created = models.DateTimeField(default=datetime.utcnow().replace(tzinfo=utc))
-    cta_button_text = models.CharField(max_length=30, default="I'm interested!")
+    ##cta_button_text = models.CharField(max_length=30, default="I'm interested!")
     
     ## The following part is for the information displayed at the pitchspot
     agent_first_name = models.CharField(max_length=100, default=owner.first_name)

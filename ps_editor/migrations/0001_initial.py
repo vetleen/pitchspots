@@ -12,28 +12,25 @@ class Migration(SchemaMigration):
         db.create_table(u'ps_editor_pitchspot', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('title', self.gf('django.db.models.fields.CharField')(max_length=75, blank=True)),
-            ('ps_owner', self.gf('django.db.models.fields.related.ForeignKey')(related_name='pitchspots_owned_set', to=orm['auth.User'])),
-            ('is_published', self.gf('django.db.models.fields.BooleanField')(default=False)),
-            ('date_created', self.gf('django.db.models.fields.DateTimeField')()),
-            ('date_completed', self.gf('django.db.models.fields.DateTimeField')(null=True, blank=True)),
+            ('owner', self.gf('django.db.models.fields.related.ForeignKey')(related_name='pitchspots_owned_set', to=orm['auth.User'])),
         ))
         db.send_create_signal(u'ps_editor', ['Pitchspot'])
 
-        # Adding M2M table for field administrator on 'Pitchspot'
-        db.create_table(u'ps_editor_pitchspot_administrator', (
+        # Adding M2M table for field admin on 'Pitchspot'
+        db.create_table(u'ps_editor_pitchspot_admin', (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('pitchspot', models.ForeignKey(orm[u'ps_editor.pitchspot'], null=False)),
             ('user', models.ForeignKey(orm[u'auth.user'], null=False))
         ))
-        db.create_unique(u'ps_editor_pitchspot_administrator', ['pitchspot_id', 'user_id'])
+        db.create_unique(u'ps_editor_pitchspot_admin', ['pitchspot_id', 'user_id'])
 
 
     def backwards(self, orm):
         # Deleting model 'Pitchspot'
         db.delete_table(u'ps_editor_pitchspot')
 
-        # Removing M2M table for field administrator on 'Pitchspot'
-        db.delete_table('ps_editor_pitchspot_administrator')
+        # Removing M2M table for field admin on 'Pitchspot'
+        db.delete_table('ps_editor_pitchspot_admin')
 
 
     models = {
@@ -75,12 +72,9 @@ class Migration(SchemaMigration):
         },
         u'ps_editor.pitchspot': {
             'Meta': {'object_name': 'Pitchspot'},
-            'administrator': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'pitchspots_administered_set'", 'null': 'True', 'symmetrical': 'False', 'to': u"orm['auth.User']"}),
-            'date_completed': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
-            'date_created': ('django.db.models.fields.DateTimeField', [], {}),
+            'admin': ('django.db.models.fields.related.ManyToManyField', [], {'blank': 'True', 'related_name': "'pitchspots_administered_set'", 'null': 'True', 'symmetrical': 'False', 'to': u"orm['auth.User']"}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_published': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'ps_owner': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'pitchspots_owned_set'", 'to': u"orm['auth.User']"}),
+            'owner': ('django.db.models.fields.related.ForeignKey', [], {'related_name': "'pitchspots_owned_set'", 'to': u"orm['auth.User']"}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '75', 'blank': 'True'})
         }
     }

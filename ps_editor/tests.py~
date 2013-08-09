@@ -10,7 +10,7 @@ from django.test.client import Client
 
 from django.contrib.auth.models import User
 
-import logic
+import ps_editor.logic
 from ps_editor.models import Pitchspot
 
 class CreatePitchspotTest(TestCase):

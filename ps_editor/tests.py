@@ -25,7 +25,7 @@ class CreatePitchspotTest(TestCase):
         c.login(username='fred', password='secret')
         
         #try to create a Pitchspot
-        c.post('/pitchspot/create/?title=testspot ispublished=False', {'title': 'testspot', 'is_published': 'False'})
+        response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
         
         
         #title = "Test1"

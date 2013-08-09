@@ -6,13 +6,23 @@ Replace this with more appropriate tests for your application.
 """
 
 from django.test import TestCase
+from django.test.client import Client
+
+from django.contrib.auth.models import User
 
 import logic
 
 class CreatePitchspotTest(TestCase):
     def test_create_pitchspot(self):
         """
-        Tests that 1 + 1 always equals 2.
+        Tests that new pitchspots are created correctly
         """
-        hello_var = logic.edit_pitchspot()
-        self.assertEqual("Hello World!", hello_var)
+        #Log in a user
+        c = Client()
+        c.login(username='fred', password='secret')
+        print request.user.username
+        
+        #title = "Test1"
+        #owner = 
+        #logic.create_pitchspot(title, owner, administrator, is_published, date_completed)
+        #self.assertEqual("Hello World!", hello_var)

@@ -23,7 +23,7 @@ class CreatePitchspotTest(TestCase):
         #create and log in a user
         new_user_for_test = User.objects.create_user(username='fred', password='secret')
         new_user_for_test.save()
-        print new_user_for_test.type()
+        print type(new_user_for_test)
         c.login(username='fred', password='secret')
         
         #try to create a Pitchspot

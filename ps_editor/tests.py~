@@ -20,7 +20,7 @@ class CreatePitchspotTest(TestCase):
         """
         #Check that no pitchspots has been created yet
         number_of_pitchspots = Pitchspot.objects.all().count()
-        self.assertEqual(number_of_pitchspots, 0)
+        self.assertEqual(number_of_pitchspots, 1)
         
         #Set up client
         c = Client()

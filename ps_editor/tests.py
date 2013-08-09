@@ -19,6 +19,7 @@ class CreatePitchspotTest(TestCase):
         Tests that new pitchspots are created correctly
         """
         #Check that no pitchspots has been created yet
+        number_of_pitchspots = Pitchspot.objects.all().count()
         self.assertEqual(number_of_pitchspots, 0)
         
         #Set up client
@@ -31,10 +32,9 @@ class CreatePitchspotTest(TestCase):
         
         #try to create a Pitchspot
         response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
-        
-        number_of_pitchspots = Pitchspot.objects.all().count()
-        
+
         #Check that a pitchspot has been created
+        number_of_pitchspots = Pitchspot.objects.all().count()
         self.assertEqual(number_of_pitchspots, 1)
         
         #title = "Test1"

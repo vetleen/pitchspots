@@ -23,9 +23,9 @@ def frontpageview(request):
 @login_required    
 def create_pitchspot_view(request):
     title = "Test"#str(request.POST['title'])
-#    is_published = bool(request.POST['is_published'])
+    #is_published = bool(request.POST['is_published'])
     owner = request.user
-    administrator = request.user
-    logic.create_pitchspot(title=title, owner=owner, administrator=administrator)
+    #administrator = request.user
+    logic.create_pitchspot(title=title, owner=owner)
     output = "It works.."
     return HttpResponse(output)

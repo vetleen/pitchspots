@@ -23,7 +23,7 @@ def frontpageview(request):
 @login_required    
 def create_pitchspot_view(request):
     title = str(request.POST['title'])
-    is_published = bool(request.POST['is_published'])
-    ps_owner = request.user
-    administrator = request.user
-    logic.create_pitchspot(title, ps_owner, administrator, is_published)
+#    is_published = bool(request.POST['is_published'])
+#    ps_owner = request.user
+#    administrator = request.user
+    logic.create_pitchspot(title)

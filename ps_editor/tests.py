@@ -15,4 +15,5 @@ class CreatePitchspotTest(TestCase):
         Tests that 1 + 1 always equals 2.
         """
         hello_var = logic.edit_pitchspot()
+        print "Yes..."
         self.assertEqual("Hello World!", hello_var)

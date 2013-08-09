@@ -2,5 +2,5 @@
 #from django.contrib.auth import authenticate, login, logout
 
 
-def createPitchspot(): 
+def edit_pitchspot(): 
     return "Hello World!"

@@ -11,6 +11,8 @@ from django.http import HttpResponse
 #from django.contrib.auth.decorators import login_required
 
 #from todotracker.models import Todo
+from logic import createPitchspot
+
 def frontpageview(request):
-    output = "Hello"
+    output = createPitchspot()
     return HttpResponse(output)

@@ -9,7 +9,7 @@ class Pitchspot(models.Model):
     ## Meta information
     title = models.CharField(max_length=75, blank=True)
     owner = models.ForeignKey(User, related_name="pitchspots_owned_set")
-    administrator = models.ForeignKey(User, related_name="pitchspots_administered_set") #ManyToManyField
+    ps_administrator = models.ForeignKey(User, related_name="pitchspots_administered_set") #ManyToManyField
     #is_published = models.BooleanField(default=False)
 
     #date_created = models.DateTimeField() #(default=datetime.utcnow().replace(tzinfo=utc))

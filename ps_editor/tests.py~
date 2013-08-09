@@ -11,6 +11,7 @@ from django.test.client import Client
 from django.contrib.auth.models import User
 
 import logic
+from ps_editor.models import Pitchspot
 
 class CreatePitchspotTest(TestCase):
     def test_create_pitchspot(self):

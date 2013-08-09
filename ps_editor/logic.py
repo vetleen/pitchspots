@@ -7,7 +7,8 @@ from django.utils.timezone import utc
 from ps_editor.models import Pitchspot
 
 def create_pitchspot(title):
-    Pitchspot.objects.create(title)    
+    MyPitchspot = Pitchspot.objects.create(title)    
+    MyPitchspot.save()
 
 
 

@@ -26,4 +26,4 @@ def create_pitchspot_view(request):
     is_published = bool(request.POST['is_published'])
     ps_owner = request.user
     administrator = request.user
-    logic.create_pitchspot(title, owner, administrator, is_published)
+    logic.create_pitchspot(title, ps_owner, administrator, is_published)

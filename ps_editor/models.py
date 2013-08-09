@@ -8,15 +8,15 @@ from django.contrib.auth.models import User
 class Pitchspot(models.Model):
     ## Meta information
     title = models.CharField(max_length=75, blank=True)
-    ps_owner = models.ForeignKey(User, related_name="pitchspots_owned_set")
-    administrator = models.ManyToManyField(User, blank=True, null=True, related_name="pitchspots_administered_set")
-    is_published = models.BooleanField(default=False)
+    #ps_owner = models.ForeignKey(User, related_name="pitchspots_owned_set")
+    #administrator = models.ManyToManyField(User, blank=True, null=True, related_name="pitchspots_administered_set")
+    #is_published = models.BooleanField(default=False)
 
-    date_created = models.DateTimeField() #(default=datetime.utcnow().replace(tzinfo=utc))
-    date_completed = models.DateTimeField(blank=True, null=True)
+    #date_created = models.DateTimeField() #(default=datetime.utcnow().replace(tzinfo=utc))
+    #date_completed = models.DateTimeField(blank=True, null=True)
 
-    def __init__ (self):
-        self.date_created = datetime.utcnow().replace(tzinfo=utc)
+    #def __init__ (self):
+    #    self.date_created = datetime.utcnow().replace(tzinfo=utc)
 
-    def __unicode__(self):
-        return self.title	
+    #def __unicode__(self):
+    #    return self.title	

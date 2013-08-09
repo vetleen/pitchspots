@@ -147,7 +147,7 @@ INSTALLED_APPS = (
     #Mine
     'ps_editor',
     #Installs
-    'south',
+    #'south',
 )
 
 # A sample logging configuration. The only tangible logging

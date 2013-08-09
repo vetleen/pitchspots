@@ -8,7 +8,7 @@ from ps_editor.models import Pitchspot
 
 def create_pitchspot(title, owner, administrator):
     MyPitchspot = Pitchspot.objects.create(title=title, owner=owner)  
-    MyPtichspot.administrator = administrator
+    MyPitchspot.administrator = administrator
     MyPitchspot.save()
 
 

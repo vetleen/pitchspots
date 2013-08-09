@@ -145,7 +145,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     
     #Mine
-
+    'ps_editor',
     #Installs
     'south',
 )

@@ -27,3 +27,5 @@ def create_pitchspot_view(request):
 #    ps_owner = request.user
 #    administrator = request.user
     logic.create_pitchspot(title)
+    output = "It works.."
+    return HttpResponse(output)

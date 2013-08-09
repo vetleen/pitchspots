@@ -145,8 +145,7 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
     
     #Mine
-    'generic_parts',
-    'pspots',
+
     #Installs
     'south',
 )

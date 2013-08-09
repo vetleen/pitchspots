@@ -146,6 +146,7 @@ INSTALLED_APPS = (
     
     #Mine
     'generic_parts',
+    'pspots',
     #Installs
     'south',
 )

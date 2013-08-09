@@ -4,6 +4,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 # Create your models here.
+
 class Pitchspot(models.Model):
     ## Meta information
     title = models.CharField(max_length=75, blank=True)

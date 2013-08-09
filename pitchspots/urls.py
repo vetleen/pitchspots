@@ -11,7 +11,11 @@ urlpatterns = patterns('',
     
     url(r'^$', 'ps_editor.views.frontpageview', name='frontpageview'),
     url(r'^frontpage/$', 'ps_editor.views.frontpageview', name='frontpage-by-specific-url'),
-
+    url(r'^pitchspot/create/$', 'ps_editor.views.create_pitchspot_view', name='create_pitchspot_view'),
+    
+    
+    
+    
 #    #### TODO MANAGEMENT ####
 #    url(r'^todos/view/$', 'todotracker.views.viewtodosview', name='viewtodosview'),
 #    url(r'^todos/view/(?P<pgnumb>\d*)/$', 'todotracker.views.viewtodosview', name='pagesoftodosview'),

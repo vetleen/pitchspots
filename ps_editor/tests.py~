@@ -17,10 +17,16 @@ class CreatePitchspotTest(TestCase):
         """
         Tests that new pitchspots are created correctly
         """
-        #Log in a user
+        #Set up client
         c = Client()
+        
+        #create and log in a user
+        user = User.objects.create_user(username='fred', password='secret')
         c.login(username='fred', password='secret')
-        print request.user.username
+        
+        #try to create a Pitchspot
+        c.post('/pitchspot/create/', {'name': 'fred', 'passwd': 'secret'})
+        
         
         #title = "Test1"
         #owner = 

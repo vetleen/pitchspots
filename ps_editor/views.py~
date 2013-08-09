@@ -12,8 +12,14 @@ from django.http import HttpResponse
 
 #from todotracker.models import Todo
 
-#from logic import edit_itchspot ## LOL
+#from logic import edit_pitchspot ## LOL
+import logic
 
 def frontpageview(request):
     output = "'ello world.."
     return HttpResponse(output)
+    
+def create_pitchspot(request, title, is_published):
+    owner = request.user
+    administrator = request.user
+    logic.create_pitchspot(title, owner, administrator, is_published)

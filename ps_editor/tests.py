@@ -17,11 +17,17 @@ class CreatePitchspotTest(TestCase):
         """
         Tests that new pitchspots are created correctly
         """
-        #Log in a user
+        #Set up client
         c = Client()
+        
+        #create and log in a user
+        user = User.objects.create_user(username='fred', password='secret')
         c.login(username='fred', password='secret')
-
-        assertTrue(request.user.is_authenticated())
+        
+        #try to create a Pitchspot
+        c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
+        
+        
         #title = "Test1"
         #owner = 
         #logic.create_pitchspot(title, owner, administrator, is_published, date_completed)

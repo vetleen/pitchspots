@@ -21,7 +21,9 @@ def frontpageview(request):
     return HttpResponse(output)
 
 @login_required    
-def create_pitchspot_view(request, title, is_published):
+def create_pitchspot_view(request):
+    title = request.POST['title']
+    is_published = request.POST['is_published']
     owner = request.user
     administrator = request.user
     logic.create_pitchspot(title, owner, administrator, is_published)

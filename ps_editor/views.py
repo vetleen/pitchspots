@@ -6,9 +6,10 @@ from django.http import HttpResponse
 #from django.template import Context, RequestContext
 #from django.contrib.auth.models import User
 #from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
 #from django.core.context_processors import csrf
 #from django.core.urlresolvers import reverse
-#from django.contrib.auth.decorators import login_required
+
 
 #from todotracker.models import Todo
 

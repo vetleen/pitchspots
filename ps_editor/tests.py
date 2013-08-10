@@ -47,7 +47,7 @@ class CreatePitchspotTest(TestCase):
         
         #Check that the types are correct
         NewP = Pitchspot.objects.get(id=1)
-        self.assertIsInstance(NewP.title, str)
+        self.assertIsInstance(NewP.title, unicode)
 
 
 

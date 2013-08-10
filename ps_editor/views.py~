@@ -40,7 +40,7 @@ def retrieve_pitchspot_view(request, pitchspot_id):
     pitchspot_dict = {
                       'title': PitchspotToRetrieve.title, 
                       'owner': PitchspotToRetrieve.owner.username, 
-                      'admin': admin_dict, #this is already a dictionary
+                      'admin': admin_dict, #this is already a dictionary type
                       'is_published': PitchspotToRetrieve.is_published,
                       'date_created': 
                           {

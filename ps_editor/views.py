@@ -30,13 +30,7 @@ def create_pitchspot_view(request):
 
 def retrieve_pitchspot_view(request, pitchspot_id):
     PitchspotToRetrieve = Pitchspot.objects.get(id=pitchspot_id)
-    def get_admin_dict(pitchspot):
-        ''' returns a dict with all admins for the pitchsapot, and uses numbers for keys '''
-        admin_dict = {}
-        for key, user in enumerate(pitchspot.admin.all()):
-            admin_dict.update({key+1: user.username})
-        return admin_dict
-    admin_dict = get_admin_dict(PitchspotToRetrieve)
+    admin_dict = logic.get_admin_dict(PitchspotToRetrieve)
     pitchspot_dict = {
                       'title': PitchspotToRetrieve.title, 
                       'owner': PitchspotToRetrieve.owner.username, 

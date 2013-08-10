@@ -6,8 +6,6 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Pitchspot(models.Model):
-    def set_date_now ():
-        return datetime.utcnow().replace(tzinfo=utc)
         
     ## Meta information
     title = models.CharField(max_length=75, blank=True)
@@ -15,7 +13,7 @@ class Pitchspot(models.Model):
     admin = models.ManyToManyField(User, blank=True, null=True, related_name="pitchspots_administered_set")
     is_published = models.BooleanField(default=False)
 
-    date_created = models.DateTimeField(default=set_date_now()) #(default=datetime.utcnow().replace(tzinfo=utc))
+    date_created = models.DateTimeField() #(default=datetime.utcnow().replace(tzinfo=utc))
     #date_completed = models.DateTimeField(blank=True, null=True)
 
 

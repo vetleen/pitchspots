@@ -13,7 +13,7 @@ from django.contrib.auth.models import User
 import ps_editor.logic
 from ps_editor.models import Pitchspot
 
-
+c = Client()    
 
 def create_test_user(username='fred', password='secret'):
     ''' Create and logs in a user, you can pass username and password, or it will default to "fred" and "secret". '''
@@ -32,7 +32,7 @@ class CreatePitchspotTest(TestCase):
             self.assertEqual(number_of_pitchspots, x)
 
         #Set up
-        c = Client()        
+      
         create_test_user(username='fred', password='secret')
         
         #Check that no pitchspots has been created yet

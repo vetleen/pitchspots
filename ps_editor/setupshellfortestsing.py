@@ -1,5 +1,6 @@
 from django.contrib.auth.models import User
-from ps_editor import Pitchspot, logic
+from ps_editor.models import Pitchspot
+from ps_editor import logic
 
 def setup_shell():
     u=User.objects.create_user(username="testuser", password="testpassword")
@@ -14,4 +15,4 @@ def setup_shell():
 
     print "p1, p2 and p3 created with owner u"
 
-setup_shell()
+

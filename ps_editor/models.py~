@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 
 class Pitchspot(models.Model):
     def set_date_now ():
-        self.date_created = datetime.utcnow().replace(tzinfo=utc)
+        return datetime.utcnow().replace(tzinfo=utc)
         
     ## Meta information
     title = models.CharField(max_length=75, blank=True)

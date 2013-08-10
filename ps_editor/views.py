@@ -30,7 +30,7 @@ def create_pitchspot_view(request):
 
 def retrieve_pitchspot_view(request, pitchspot_id):
     PitchspotToRetrieve = Pitchspot.objects.get(id=pitchspot_id)
-    pitchspot_dict = {'title': PitchspotToRetrieve.title} #, 'owner': PitchspotToRetrieve.owner, 'admin': 'Not implemented', 'is_published': PitchspotToRetrieve.is_published, 'date_created': PitchspotToRetrieve.date_created}
+    pitchspot_dict = {'title': PitchspotToRetrieve.title, 'owner': PitchspotToRetrieve.owner, 'admin': 'Not implemented', 'is_published': PitchspotToRetrieve.is_published, 'date_created': PitchspotToRetrieve.date_created}
     output = pitchspot_dict
     return HttpResponse(output)  
 

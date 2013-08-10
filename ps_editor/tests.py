@@ -52,7 +52,7 @@ class CreatePitchspotTest(TestCase):
         self.assertIsInstance(NewP.owner, object)
         self.assertIsInstance(NewP.admin, object)
         self.assertIsInstance(NewP.is_published, bool)
-
+        self.assertIsInstance(NewP.date_created, datetime.datetime)
 
         print "date_created is type: %s, and is: %s" % (type(NewP.date_created), NewP.date_created)
 

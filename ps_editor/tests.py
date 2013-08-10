@@ -19,7 +19,7 @@ class CreatePitchspotTest(TestCase):
         """
         Tests that new pitchspots are created correctly
         """
-        def check_that_x_pitchspots_exist(self, x):
+        def check_that_x_pitchspots_exist(x):
             ''' Checks that x pitchspots exist '''
             number_of_pitchspots = Pitchspot.objects.all().count()
             self.assertEqual(number_of_pitchspots, x)

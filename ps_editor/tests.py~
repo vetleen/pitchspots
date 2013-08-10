@@ -28,15 +28,14 @@ class CreatePitchspotTest(TestCase):
             ''' Checks that x pitchspots exist '''
             number_of_pitchspots = Pitchspot.objects.all().count()
             self.assertEqual(number_of_pitchspots, x)
-        #Check that no pitchspots has been created yet
-        check_that_x_pitchspots_exist(0)
-        
-        #Set up client
+
+        #Set up
         c = Client()
-        
-        #create and log in a user
         create_test_user(username='fred', password='secret')
         
+        #Check that no pitchspots has been created yet
+        check_that_x_pitchspots_exist(0)
+               
         #try to create a Pitchspot
         response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
 

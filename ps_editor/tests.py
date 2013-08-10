@@ -70,7 +70,7 @@ class PsEditorTests(TestCase):
         self.assertEqual(response.status_code, 200)
         #Check that content is as expected
         self.assertIsInstance(response.content, str)
-        assertIn("a", response.content)
+        self.assertIn("asswipe", response.content)
         
         print response.content    
         print type(response.content)  

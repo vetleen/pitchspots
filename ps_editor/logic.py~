@@ -7,7 +7,7 @@ from django.utils.timezone import utc
 from ps_editor.models import Pitchspot
 
 def create_pitchspot(title, owner):
-    MyPitchspot = Pitchspot.objects.create(title=title, owner=owner)
+    MyPitchspot = Pitchspot.objects.create(title=title, owner=owner,published=published)
     MyPitchspot.save()
     #MyPitchspot.owner.pitchspots_administered_set.add(MyPitchspot)
     #MyPitchspot.save()

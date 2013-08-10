@@ -10,7 +10,7 @@ class Pitchspot(models.Model):
     title = models.CharField(max_length=75, blank=True)
     owner = models.ForeignKey(User, related_name="pitchspots_owned_set")
     admin = models.ManyToManyField(User, blank=True, null=True, related_name="pitchspots_administered_set")
-    published = models.BooleanField(default=False)
+    is_published = models.BooleanField(default=False)
 
     #date_created = models.DateTimeField() #(default=datetime.utcnow().replace(tzinfo=utc))
     #date_completed = models.DateTimeField(blank=True, null=True)

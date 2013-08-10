@@ -38,7 +38,7 @@ class CreatePitchspotTest(TestCase):
         
         
         #Check that we get the proper responsecode
-        self.assertEqual(response.response_code, 200)
+        self.assertEqual(response.status_code, 200)
         
         #Check that a pitchspot has been created
         check_that_x_pitchspots_exist(1)

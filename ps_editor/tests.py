@@ -87,10 +87,7 @@ class PsEditorTests(TestCase):
                                             ]
         for word in words_expected_to_be_in_response:
             self.assertIn(word, response.content)
-        
-        
-        print response.content    
-        print type(response.content)  
+ 
           
 
 

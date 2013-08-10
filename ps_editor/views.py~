@@ -46,7 +46,7 @@ def retrieve_pitchspot_view(request, pitchspot_id):
                           },
                       } 
                       
-    pitchspot_JSON = json.dumps(pitchspot_dict, sort_keys=True, indent=4, separators=(',', ': '))
+    pitchspot_JSON = json.dumps(pitchspot_dict, sort_keys=False, indent=4, separators=(',', ': '))
     
     output = pitchspot_JSON
     return HttpResponse(output)  

@@ -35,7 +35,11 @@ class CreatePitchspotTest(TestCase):
                
         #Create a Pitchspot
         response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
-
+        
+        
+        #Check that we get the proper responsecode
+        self.assertEqual(response.status_code, 200)
+        
         #Check that a pitchspot has been created
         check_that_x_pitchspots_exist(1)
         

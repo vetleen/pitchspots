@@ -11,8 +11,8 @@ from ps_editor.models import Pitchspot
 c = Client()    
 
 ## COMMON FUNCTIONS
-def create_test_user(username='fred', password='secret'):
-    ''' Create and logs in a user, you can pass username and password, or it will default to "fred" and "secret". '''
+def create_test_user(username, password):
+    ''' Create and logs in a user, you must pass username and password. '''
     new_user_for_test = User.objects.create_user(username=username, password=password)
     new_user_for_test.save()
     c.login(username=username, password=password)            
@@ -55,7 +55,7 @@ class CreatePitchspotViewTest(TestCase):
 #class RetrievePitchspotTest(TestCase):
     #Set up
     create_test_user(username='fred2', password='secret2')
-     response = c.post('/pitchspot/create/', {'title': 'testspot2', 'is_published': 'True'})
+    response = c.post('/pitchspot/create/', {'title': 'testspot2', 'is_published': 'True'})
     
     #See if a PS can be retrieved
     response = c.get('/pitchspot/1/')

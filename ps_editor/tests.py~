@@ -84,7 +84,8 @@ class PsEditorTests(TestCase):
                                             "fred2",
                                             "true", 
                                             "Pilgrim",
-                                            "testspot",]
+                                            "testspot",
+                                            ]
         for word in words_expected_to_be_in_response:
             self.assertIn(word, response.content)
         

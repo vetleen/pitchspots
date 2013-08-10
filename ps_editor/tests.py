@@ -83,7 +83,6 @@ class PsEditorTests(TestCase):
                                             "title", 
                                             "fred2",
                                             "true", 
-                                            "Pilgrim",
                                             "testspot",
                                             ]
         for word in words_expected_to_be_in_response:

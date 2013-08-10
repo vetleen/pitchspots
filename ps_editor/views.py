@@ -34,10 +34,9 @@ def retrieve_pitchspot_view(request, pitchspot_id):
                       'title': PitchspotToRetrieve.title, 
                       'owner': PitchspotToRetrieve.owner.username, 
                       'admin': 'Not implemented', 
-                      'is_published': PitchspotToRetrieve.is_published
+                      'is_published': PitchspotToRetrieve.is_published,
                       'date_created': 
-                          {
-                          'year': PitchspotToRetrieve.date_created.year
+                          {'year': PitchspotToRetrieve.date_created.year
                           }
                       #'date_created': PitchspotToRetrieve.date_created
                       } 

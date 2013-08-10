@@ -4,7 +4,7 @@ from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
 
-import ps_editor.logic
+import ps_editor_logic
 from ps_editor.models import Pitchspot
 
 ## SET UP FOR TESTS

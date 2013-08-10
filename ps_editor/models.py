@@ -12,9 +12,15 @@ class Pitchspot(models.Model):
     owner = models.ForeignKey(User, related_name="pitchspots_owned_set")
     admin = models.ManyToManyField(User, blank=True, null=True, related_name="pitchspots_administered_set")
     is_published = models.BooleanField(default=False)
-
-    date_created = models.DateTimeField() #(default=datetime.utcnow().replace(tzinfo=utc))
-    #date_completed = models.DateTimeField(blank=True, null=True)
+    date_created = models.DateTimeField() 
 
     def __unicode__(self):
         return self.title	
+        
+class Module(models.Model):
+    pitchspot = models.ForeignKey(Pitchspot)
+    
+class IntroModule(Module): #sub-class og Module
+    title = models.CharField(max_length=75)
+    ingress = models.TextField(blank=True)
+    body_text = models.TextField()

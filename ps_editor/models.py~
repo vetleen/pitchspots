@@ -9,12 +9,18 @@ class Pitchspot(models.Model):
         
     ## Meta information
     title = models.CharField(max_length=75, blank=True)
-    owner = models.ForeignKey(User, related_name="pitchspot_owned_set")
-    admin = models.ManyToManyField(User, blank=True, null=True, related_name="pitchspot_administered_set")
+    owner = models.ForeignKey(User, related_name="pitchspots_owned_set")
+    admin = models.ManyToManyField(User, blank=True, null=True, related_name="pitchspots_administered_set")
     is_published = models.BooleanField(default=False)
-
-    date_created = models.DateTimeField() #(default=datetime.utcnow().replace(tzinfo=utc))
-    #date_completed = models.DateTimeField(blank=True, null=True)
+    date_created = models.DateTimeField() 
 
     def __unicode__(self):
         return self.title	
+        
+class Module(models.Model):
+    pitchspot = models.ForeignKey(Pitchspot)
+    
+class IntroModule(Module): #sub-class og Module
+    title = models.CharField(max_length=75)
+    ingress = models.TextField(blank=true)
+    body_text = models.TextField()

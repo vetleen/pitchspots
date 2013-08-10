@@ -88,7 +88,17 @@ class PsEditorTests(TestCase):
         for word in words_expected_to_be_in_response:
             self.assertIn(word, response.content)
  
-          
+    def test_create_module(self):
+        """
+        Tests that pitchspots are retrieved correctly
+        """
+        ###Set up
+        #Create user
+        create_test_user(username='fred2', password='secret')        
+        #Create pitchspot
+        response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
+        #Check that we get the proper responsecode
+        self.assertEqual(response.status_code, 200)          
 
 
 

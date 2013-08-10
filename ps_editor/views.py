@@ -36,9 +36,14 @@ def retrieve_pitchspot_view(request, pitchspot_id):
                       'admin': 'Not implemented', 
                       'is_published': PitchspotToRetrieve.is_published,
                       'date_created': 
-                          {'year': PitchspotToRetrieve.date_created.year
+                          {
+                          'year': PitchspotToRetrieve.date_created.year
+                          'month': PitchspotToRetrieve.date_created.month
+                          'day': PitchspotToRetrieve.date_created.day
+                          'hour': PitchspotToRetrieve.date_created.hour
+                          'minute': PitchspotToRetrieve.date_created.minute
+                          'second': PitchspotToRetrieve.date_created.second
                           }
-                      #'date_created': PitchspotToRetrieve.date_created
                       } 
                       
     pitchspot_JSON = json.dumps(pitchspot_dict, sort_keys=True, indent=4, separators=(',', ': '))

@@ -59,6 +59,7 @@ class RetrievePitchspotTest(TestCase):
         
         #See if a PS can be retrieved
         response = c.get('/pitchspot/1/')
+        print response.content
 
 
 

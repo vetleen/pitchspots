@@ -17,7 +17,7 @@ def create_test_user(username='fred', password='secret'):
     new_user_for_test.save()
     c.login(username=username, password=password)            
         
-class CreatePitchspotTest(TestCase):
+class CreatePitchspotViewTest(TestCase):
     def test_create_pitchspot(self):
         """
         Tests that new pitchspots are created correctly
@@ -52,8 +52,14 @@ class CreatePitchspotTest(TestCase):
         self.assertIsInstance(NewP.is_published, bool)
         self.assertIsInstance(NewP.date_created, datetime)
 
-
-
+class RetrievePitchspotTest(TestCase):
+        #Set up
+        create_test_user(username='fred', password='secret')
+        response = c.post('/pitchspot/create/', {'title': 'testspot2', 'is_published': 'True'})
+        
+        #See if a PS can be retrieved
+        response = c.get('/pitchspot/1/')
+        print response.content
 
 
 

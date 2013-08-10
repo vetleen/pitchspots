@@ -29,7 +29,7 @@ def create_pitchspot_view(request):
     output = "Create pitchspot works.."
     return HttpResponse(output)
 
-def get_pitchspot_view(request, pitchspot_id):
+def retrieve_pitchspot_view(request, pitchspot_id):
     Pitchspot = Pitchspot.objects.get(id=pitchspot_id)
     pitchspot_dict = {'title': Pitchspot.title, 'owner': Pitchspot.owner, 'admin': 'Not implemented', 'is_published': Pitchspot.is_published, 'date_created': Pitchspot.date_created}
     output = pitchspot_dict

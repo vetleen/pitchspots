@@ -50,8 +50,8 @@ class CreatePitchspotTest(TestCase):
         print "owner is type: %s" % (type(NewP.owner))
         print "admin is type: %s" % (type(NewP.admin))
         self.assertIsInstance(NewP.title, str)
-        self.assertIsInstance(NewP.owner, class)
-        self.assertIsInstance(NewP.admin, class)
+        self.assertIsInstance(NewP.owner, object)
+        self.assertIsInstance(NewP.admin, object)
         self.assertIsInstance(NewP.is_published, bool)
 
 

@@ -1,4 +1,6 @@
+import json
 #from datetime import datetime  
+
 #from django.utils.timezone import utc
 from django.http import HttpResponse
 #from django.template.loader import get_template
@@ -11,8 +13,6 @@ from django.contrib.auth.decorators import login_required
 #from django.core.urlresolvers import reverse
 
 from ps_editor.models import Pitchspot
-
-#from logic import edit_pitchspot ## LOL
 import logic
 
 def frontpageview(request):

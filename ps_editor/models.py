@@ -12,11 +12,12 @@ class Pitchspot(models.Model):
     admin = models.ManyToManyField(User, blank=True, null=True, related_name="pitchspots_administered_set")
     is_published = models.BooleanField(default=False)
 
-    date_created = models.DateTimeField() #(default=datetime.utcnow().replace(tzinfo=utc))
+    #date_created = models.DateTimeField() #(default=datetime.utcnow().replace(tzinfo=utc))
     #date_completed = models.DateTimeField(blank=True, null=True)
 
     def __init__ (self):
-        self.date_created = datetime.utcnow().replace(tzinfo=utc)
+        pass
+        #self.date_created = datetime.utcnow().replace(tzinfo=utc)
 
     #def __unicode__(self):
     #    return self.title	

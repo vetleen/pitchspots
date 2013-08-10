@@ -6,9 +6,6 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Pitchspot(models.Model):
-    def __init__ (self, title, owner, admin, is_published):
-        pass
-        #self.date_created = datetime.utcnow().replace(tzinfo=utc)
     ## Meta information
     title = models.CharField(max_length=75, blank=True)
     owner = models.ForeignKey(User, related_name="pitchspots_owned_set")
@@ -17,7 +14,9 @@ class Pitchspot(models.Model):
 
     #date_created = models.DateTimeField() #(default=datetime.utcnow().replace(tzinfo=utc))
     #date_completed = models.DateTimeField(blank=True, null=True)
-
+    def set_date_created (self):
+        pass
+        #self.date_created = datetime.utcnow().replace(tzinfo=utc)
 
 
     #def __unicode__(self):

@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 # Create your models here.
 
 class Pitchspot(models.Model):
-    def __init__ (self):
+    def __init__ (self, title, owner, admin, is_published):
         pass
         #self.date_created = datetime.utcnow().replace(tzinfo=utc)
     ## Meta information

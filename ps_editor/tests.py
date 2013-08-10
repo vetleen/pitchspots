@@ -49,10 +49,10 @@ class CreatePitchspotTest(TestCase):
         NewP = Pitchspot.objects.get(id=1)
         print "owner is type: %s" % (type(NewP.owner))
         print "admin is type: %s" % (type(NewP.admin))
+        self.assertIsInstance(NewP.title, str)
+        self.assertIsInstance(NewP.owner, class)
+        self.assertIsInstance(NewP.admin, class)
         self.assertIsInstance(NewP.is_published, bool)
-
-
-
 
 
 

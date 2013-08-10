@@ -7,7 +7,9 @@ from django.utils.timezone import utc
 from ps_editor.models import Pitchspot
 
 def create_pitchspot(title, owner, is_published):
+    ''' Creates a pitcspot '''
     def set_date_now ():
+        ''' Returns current date in UTC-format'''
         return datetime.utcnow().replace(tzinfo=utc)
     MyPitchspot = Pitchspot.objects.create(title=title, owner=owner, is_published=is_published, date_created=set_date_now())
     MyPitchspot.save()

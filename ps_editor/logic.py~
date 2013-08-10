@@ -35,11 +35,11 @@ def get_pitch_spot_as_JSON(pitchspot):
                       'date_created': 
                           {
                           'year': pitchspot.date_created.year,
-                          'month': PitchspotToRetrieve.date_created.month,
-                          'day': PitchspotToRetrieve.date_created.day,
-                          'hour': PitchspotToRetrieve.date_created.hour,
-                          'minute': PitchspotToRetrieve.date_created.minute,
-                          'second': PitchspotToRetrieve.date_created.second,
+                          'month': pitchspot.date_created.month,
+                          'day': pitchspot.date_created.day,
+                          'hour': pitchspot.date_created.hour,
+                          'minute': pitchspot.date_created.minute,
+                          'second': pitchspot.date_created.second,
                           },
                       } 
                       

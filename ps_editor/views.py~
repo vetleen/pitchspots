@@ -30,7 +30,7 @@ def create_pitchspot_view(request):
 
 def retrieve_pitchspot_view(request, pitchspot_id):
     PitchspotToRetrieve = Pitchspot.objects.get(id=pitchspot_id)
-    logic.get_pitch_spot_as_JSON(PitchspotToRetrieve)    
+    pitchspot_JSON = logic.get_pitch_spot_as_JSON(PitchspotToRetrieve)    
     output = pitchspot_JSON
     return HttpResponse(output)  
 

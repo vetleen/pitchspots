@@ -47,7 +47,8 @@ class CreatePitchspotTest(TestCase):
         
         #Check that the types are correct
         NewP = Pitchspot.objects.get(id=1)
-        self.assertIsInstance(NewP.is_published, unicode)
+        print "owner is type: %s" % (type(NewP.owner))
+        self.assertIsInstance(NewP.is_published, bool)
 
 
 

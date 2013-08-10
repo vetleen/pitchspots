@@ -44,7 +44,6 @@ def retrieve_pitchspot_view(request, pitchspot_id):
                           'minute': PitchspotToRetrieve.date_created.minute
                           'second': PitchspotToRetrieve.date_created.second
                           }
-                      #'date_created': PitchspotToRetrieve.date_created
                       } 
                       
     pitchspot_JSON = json.dumps(pitchspot_dict, sort_keys=True, indent=4, separators=(',', ': '))

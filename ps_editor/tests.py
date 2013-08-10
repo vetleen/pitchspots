@@ -44,7 +44,8 @@ class CreatePitchspotTest(TestCase):
         
         #Check that the types are correct
         NewP = Pitchspot.objects.get(id=1)
-        print "date_created is type: %s, and is: %s" % (type(NewP.date_created), NewP.date_created)
+        
+        #print "date_created is type: %s, and is: %s" % (type(NewP.date_created), NewP.date_created)
         self.assertIsInstance(NewP.title, unicode)
         self.assertIsInstance(NewP.owner, object)
         self.assertIsInstance(NewP.admin, object)

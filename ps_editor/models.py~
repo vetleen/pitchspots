@@ -14,9 +14,7 @@ class Pitchspot(models.Model):
     is_published = models.BooleanField(default=False)
 
     date_created = models.DateTimeField() #(default=datetime.utcnow().replace(tzinfo=utc))
-    #date_completed = models.DateTimeField(blank=True, null=True)
-
-
+    date_completed = models.DateTimeField(blank=True, null=True)
 
     def __unicode__(self):
         return self.title	

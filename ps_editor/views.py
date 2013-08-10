@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 #from django.core.urlresolvers import reverse
 
 
-#from todotracker.models import Todo
+#from ps_editor.models import Pitchspot
 
 #from logic import edit_pitchspot ## LOL
 import logic
@@ -26,5 +26,12 @@ def create_pitchspot_view(request):
     is_published = request.POST['is_published']
     owner = request.user
     logic.create_pitchspot(title=title, owner=owner, is_published=is_published)
-    output = "It works.."
+    output = "Create pitchspot works.."
     return HttpResponse(output)
+
+def get_pitchspot_view(request, pitchspot_id):
+    Pitchspot = Pitchspot.objects.get(id=pitchspot_id)
+    pitchspot_dict = {'title': Pitchspot.title, 'owner': Pitchspot.owner, 'admin': 'Not implemented', 'is_published': Pitchspot.is_published, 'date_created': Pitchspot.date_created}
+    output = pitchspot_dict
+    return HttpResponse(output)  
+

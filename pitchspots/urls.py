@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     url(r'^$', 'ps_editor.views.frontpageview', name='frontpageview'),
     url(r'^frontpage/$', 'ps_editor.views.frontpageview', name='frontpage-by-specific-url'),
     url(r'^pitchspot/create/$', 'ps_editor.views.create_pitchspot_view', name='create_pitchspot_view'),
-    
+    url(r'^pitchspot/(?P<pitchspot_id>\d*)$', 'ps_editor.views.get_pitchspot_view', name='get_pitchspot_view'),   
     
     
     

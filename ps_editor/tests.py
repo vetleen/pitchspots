@@ -44,6 +44,10 @@ class CreatePitchspotTest(TestCase):
 
         #Check that a pitchspot has been created
         check_that_x_pitchspots_exist(1)
+        
+        #Check that the types are correct
+        NewP = Pitchspot.objects.get(id=1)
+        assertInstanceOf(NewP.title, string)
 
 
 

@@ -1,4 +1,4 @@
-import json
+
 #from datetime import datetime  
 
 #from django.utils.timezone import utc
@@ -13,7 +13,7 @@ from django.contrib.auth.decorators import login_required
 #from django.core.urlresolvers import reverse
 
 from ps_editor.models import Pitchspot
-import logic
+import ps_logic
 
 def frontpageview(request):
     output = "'ello world.."
@@ -24,13 +24,13 @@ def create_pitchspot_view(request):
     title = str(request.POST['title'])
     is_published = request.POST['is_published']
     owner = request.user
-    logic.create_pitchspot(title=title, owner=owner, is_published=is_published)
+    ps_logic.create_pitchspot(title=title, owner=owner, is_published=is_published)
     output = "Create pitchspot works.."
     return HttpResponse(output)
 
 def retrieve_pitchspot_view(request, pitchspot_id):
     PitchspotToRetrieve = Pitchspot.objects.get(id=pitchspot_id)
-    pitchspot_JSON = logic.get_pitch_spot_as_JSON(PitchspotToRetrieve)    
+    pitchspot_JSON = ps_logic.get_pitch_spot_as_JSON(PitchspotToRetrieve)    
     output = pitchspot_JSON
     return HttpResponse(output)  
 

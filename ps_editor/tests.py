@@ -56,6 +56,9 @@ class PsEditorTests(TestCase):
         """
         Tests that pitchspots are retrieved correctly
         """
+        ###Set up
+        #Create user
+        create_test_user(username='fred2', password='secret')        
         #Create pitchspot
         response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
         #Check that we get the proper responsecode

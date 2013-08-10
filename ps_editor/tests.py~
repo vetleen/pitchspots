@@ -56,6 +56,12 @@ class PsEditorTests(TestCase):
         """
         Tests that pitchspots are retrieved correctly
         """
+        #Create pitchspot
+        response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
+        #Check that we get the proper responsecode
+        self.assertEqual(response.status_code, 200)
+        
+        #Check that we get what we expect
         response = c.get('/pitchspot/1/')
         print response.content      
           

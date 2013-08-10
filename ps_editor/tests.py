@@ -54,8 +54,8 @@ class CreatePitchspotViewTest(TestCase):
         
 class RetrievePitchspotTest(TestCase):
     #Set up
-    create_test_user(username='jackyboy', password='noneofyourbeeswax')
-    response = c.post('/pitchspot/create/', {'title': 'testspot2', 'is_published': 'True'})
+    #create_test_user(username='jackyboy', password='noneofyourbeeswax')
+    #response = c.post('/pitchspot/create/', {'title': 'testspot2', 'is_published': 'True'})
     
     #See if a PS can be retrieved
     response = c.get('/pitchspot/1/')

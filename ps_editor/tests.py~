@@ -12,16 +12,6 @@ from django.contrib.auth.models import User
 
 import ps_editor.logic
 from ps_editor.models import Pitchspot
-class CreateUser(TestCase):
-    def create_user(self):
-        
-        #Set up client
-        c = Client()
-            
-        #create and log in a user
-        new_user_for_test = User.objects.create_user(username='fred', password='secret')
-        new_user_for_test.save()
-        c.login(username='fred', password='secret')
         
         
 class CreatePitchspotTest(TestCase):
@@ -30,13 +20,18 @@ class CreatePitchspotTest(TestCase):
         Tests that new pitchspots are created correctly
         """
         #Check that no pitchspots has been created yet
-        number_of_pitchspots = Pitchspot.objects.all().count()
-        self.assertEqual(number_of_pitchspots, 0)
-        
+        def check_that_x_pitchspots_exist(self, x):
+            ''' Checks that x pitchspots exist '''
+            number_of_pitchspots = Pitchspot.objects.all().count()
+            self.assertEqual(number_of_pitchspots, x)
+        check_that_x_pitchspots_exist(0)
         #Set up client
         c = Client()
         
-
+        #create and log in a user
+        new_user_for_test = User.objects.create_user(username='fred', password='secret')
+        new_user_for_test.save()
+        c.login(username='fred', password='secret')
         
         #try to create a Pitchspot
         response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})

@@ -51,7 +51,7 @@ class CreatePitchspotViewTest(TestCase):
         self.assertIsInstance(NewP.admin, object)
         self.assertIsInstance(NewP.is_published, bool)
         self.assertIsInstance(NewP.date_created, datetime)
-
+        
 #class RetrievePitchspotTest(TestCase):
     #Set up
     create_test_user(username='fred2', password='secret2')

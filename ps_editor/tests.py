@@ -22,7 +22,7 @@ class CreatePitchspotTest(TestCase):
         """
         Tests that new pitchspots are created correctly
         """
-        def check_that_x_pitchspots_exist(x):
+        def assert_that_x_pitchspots_exist(x):
             ''' Checks that x pitchspots exist '''
             number_of_pitchspots = Pitchspot.objects.all().count()
             self.assertEqual(number_of_pitchspots, x)
@@ -31,17 +31,16 @@ class CreatePitchspotTest(TestCase):
         create_test_user(username='fred', password='secret')
         
         #Check that no pitchspots has been created yet
-        check_that_x_pitchspots_exist(0)
+        assert_that_x_pitchspots_exist(0)
                
         #Create a Pitchspot
         response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
-        
-        
+
         #Check that we get the proper responsecode
-        self.assertEqual(response.status_code, 201)
+        self.assertEqual(response.status_code, 200)
         
         #Check that a pitchspot has been created
-        check_that_x_pitchspots_exist(1)
+        assert_that_x_pitchspots_exist(1)
         
         #Check that the types are correct
         NewP = Pitchspot.objects.get(id=1)

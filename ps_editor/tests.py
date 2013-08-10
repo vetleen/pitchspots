@@ -12,7 +12,18 @@ from django.contrib.auth.models import User
 
 import ps_editor.logic
 from ps_editor.models import Pitchspot
-
+class CreateUser(TestCase):
+    def create_user(self):
+        
+        #Set up client
+        c = Client()
+            
+        #create and log in a user
+        new_user_for_test = User.objects.create_user(username='fred', password='secret')
+        new_user_for_test.save()
+        c.login(username='fred', password='secret')
+        
+        
 class CreatePitchspotTest(TestCase):
     def test_create_pitchspot(self):
         """
@@ -25,10 +36,7 @@ class CreatePitchspotTest(TestCase):
         #Set up client
         c = Client()
         
-        #create and log in a user
-        new_user_for_test = User.objects.create_user(username='fred', password='secret')
-        new_user_for_test.save()
-        c.login(username='fred', password='secret')
+
         
         #try to create a Pitchspot
         response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})

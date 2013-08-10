@@ -33,7 +33,7 @@ def retrieve_pitchspot_view(request, pitchspot_id):
     pitchspot_dict = {
                       'title': PitchspotToRetrieve.title, 
                       'owner': PitchspotToRetrieve.owner.username, 
-                      'admin': 'Not implemented', 
+                      'admin': 'feature under developement', 
                       'is_published': PitchspotToRetrieve.is_published,
                       'date_created': 
                           {
@@ -42,8 +42,8 @@ def retrieve_pitchspot_view(request, pitchspot_id):
                           'day': PitchspotToRetrieve.date_created.day,
                           'hour': PitchspotToRetrieve.date_created.hour,
                           'minute': PitchspotToRetrieve.date_created.minute,
-                          'second': PitchspotToRetrieve.date_created.second
-                          }
+                          'second': PitchspotToRetrieve.date_created.second,
+                          },
                       } 
                       
     pitchspot_JSON = json.dumps(pitchspot_dict, sort_keys=True, indent=4, separators=(',', ': '))

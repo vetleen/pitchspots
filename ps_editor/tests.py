@@ -66,7 +66,8 @@ class PsEditorTests(TestCase):
         
         #Check that we get what we expect
         response = c.get('/pitchspot/1/')
-        print response.content      
+        print response.content    
+        print type(response.content)  
           
 
 

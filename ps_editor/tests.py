@@ -13,8 +13,10 @@ from django.contrib.auth.models import User
 import ps_editor.logic
 from ps_editor.models import Pitchspot
 
+## SET UP FOR TESTS
 c = Client()    
 
+## COMMON FUNCTIONS
 def create_test_user(username='fred', password='secret'):
     ''' Create and logs in a user, you can pass username and password, or it will default to "fred" and "secret". '''
     new_user_for_test = User.objects.create_user(username=username, password=password)
@@ -32,19 +34,29 @@ class CreatePitchspotTest(TestCase):
             self.assertEqual(number_of_pitchspots, x)
 
         #Set up
-      
         create_test_user(username='fred', password='secret')
         
         #Check that no pitchspots has been created yet
         check_that_x_pitchspots_exist(0)
                
-        #try to create a Pitchspot
+        #Create a Pitchspot
         response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
 
         #Check that a pitchspot has been created
         check_that_x_pitchspots_exist(1)
-        
-        #title = "Test1"
-        #owner = 
-        #logic.create_pitchspot(title, owner, administrator, is_published, date_completed)
-        #self.assertEqual("Hello World!", hello_var)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

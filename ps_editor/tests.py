@@ -12,7 +12,12 @@ from django.contrib.auth.models import User
 
 import ps_editor.logic
 from ps_editor.models import Pitchspot
-        
+
+def create_test_user(username='fred', password='secret'):
+    ''' Create and logs in a user, you can pass username and password, or it will default to "fred" and "secret". '''
+    new_user_for_test = User.objects.create_user(username=username, password=password)
+    new_user_for_test.save()
+    c.login(username=username, password=password)            
         
 class CreatePitchspotTest(TestCase):
     def test_create_pitchspot(self):
@@ -23,23 +28,19 @@ class CreatePitchspotTest(TestCase):
             ''' Checks that x pitchspots exist '''
             number_of_pitchspots = Pitchspot.objects.all().count()
             self.assertEqual(number_of_pitchspots, x)
+
+        #Set up
+        c = Client()
+        create_test_user(username='fred', password='secret')
+        
         #Check that no pitchspots has been created yet
         check_that_x_pitchspots_exist(0)
-        
-        #Set up client
-        c = Client()
-        
-        #create and log in a user
-        new_user_for_test = User.objects.create_user(username='fred', password='secret')
-        new_user_for_test.save()
-        c.login(username='fred', password='secret')
-        
+               
         #try to create a Pitchspot
         response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
 
         #Check that a pitchspot has been created
-        number_of_pitchspots = Pitchspot.objects.all().count()
-        self.assertEqual(number_of_pitchspots, 1)
+        check_that_x_pitchspots_exist(1)
         
         #title = "Test1"
         #owner = 

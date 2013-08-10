@@ -30,25 +30,7 @@ def create_pitchspot_view(request):
 
 def retrieve_pitchspot_view(request, pitchspot_id):
     PitchspotToRetrieve = Pitchspot.objects.get(id=pitchspot_id)
-    admin_dict = logic.get_admin_dict(PitchspotToRetrieve)
-    pitchspot_dict = {
-                      'title': PitchspotToRetrieve.title, 
-                      'owner': PitchspotToRetrieve.owner.username, 
-                      'admin': admin_dict, #this is already a dictionary type
-                      'is_published': PitchspotToRetrieve.is_published,
-                      'date_created': 
-                          {
-                          'year': PitchspotToRetrieve.date_created.year,
-                          'month': PitchspotToRetrieve.date_created.month,
-                          'day': PitchspotToRetrieve.date_created.day,
-                          'hour': PitchspotToRetrieve.date_created.hour,
-                          'minute': PitchspotToRetrieve.date_created.minute,
-                          'second': PitchspotToRetrieve.date_created.second,
-                          },
-                      } 
-                      
-    pitchspot_JSON = json.dumps(pitchspot_dict, sort_keys=True, indent=4, separators=(',', ': '))
-    
+    pitchspot_JSON = logic.get_pitch_spot_as_JSON(PitchspotToRetrieve)    
     output = pitchspot_JSON
     return HttpResponse(output)  
 

@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 #from django.core.urlresolvers import reverse
 
 
-#from ps_editor.models import Pitchspot
+from ps_editor.models import Pitchspot
 
 #from logic import edit_pitchspot ## LOL
 import logic

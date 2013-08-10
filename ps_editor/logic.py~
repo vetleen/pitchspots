@@ -13,8 +13,9 @@ def create_pitchspot(title, owner, is_published):
         return datetime.utcnow().replace(tzinfo=utc)
     MyPitchspot = Pitchspot.objects.create(title=title, owner=owner, is_published=is_published, date_created=set_date_now())
     MyPitchspot.save()
+    MyPitchspot.admin.add(owner)
     #p.admin.all()
-    #MyPitchspot.save()
+    MyPitchspot.save()
 
 
 

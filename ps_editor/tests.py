@@ -17,7 +17,7 @@ def create_test_user(username, password):
     new_user_for_test.save()
     c.login(username=username, password=password)            
         
-class CreatePitchspotViewTest(TestCase):
+class PsEditorTests(TestCase):
     def test_create_pitchspot(self):
         """
         Tests that new pitchspots are created correctly
@@ -53,6 +53,9 @@ class CreatePitchspotViewTest(TestCase):
         self.assertIsInstance(NewP.date_created, datetime)
 
     def test_retrieve_pitchspot(self):
+        """
+        Tests that pitchspots are retrieved correctly
+        """
         response = c.get('/pitchspot/1/')
         print response.content      
           

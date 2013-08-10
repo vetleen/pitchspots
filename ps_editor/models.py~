@@ -8,6 +8,7 @@ from django.contrib.auth.models import User
 class Pitchspot(models.Model):
     def set_date_now (self):
         self.date_created = datetime.utcnow().replace(tzinfo=utc)
+        
     ## Meta information
     title = models.CharField(max_length=75, blank=True)
     owner = models.ForeignKey(User, related_name="pitchspots_owned_set")

@@ -53,7 +53,8 @@ class CreatePitchspotViewTest(TestCase):
         self.assertIsInstance(NewP.date_created, datetime)
         
         response = c.get('/pitchspot/1/')
-        print response.content        
+        print response.content      
+          
 class RetrievePitchspotTest(TestCase):
     #Set up
     #create_test_user(username='jackyboy', password='noneofyourbeeswax')

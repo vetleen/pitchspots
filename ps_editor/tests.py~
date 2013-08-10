@@ -4,10 +4,10 @@ when you run "manage.py test".
 
 Replace this with more appropriate tests for your application.
 """
+from datetime import datetime  
 
 from django.test import TestCase
 from django.test.client import Client
-
 from django.contrib.auth.models import User
 
 import ps_editor.logic
@@ -52,7 +52,7 @@ class CreatePitchspotTest(TestCase):
         self.assertIsInstance(NewP.owner, object)
         self.assertIsInstance(NewP.admin, object)
         self.assertIsInstance(NewP.is_published, bool)
-
+        self.assertIsInstance(NewP.date_created, datetime.datetime)
 
         print "date_created is type: %s, and is: %s" % (type(NewP.date_created), NewP.date_created)
 

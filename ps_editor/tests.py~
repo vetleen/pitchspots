@@ -1,4 +1,4 @@
-from datetime import datetime  
+import datetime  
 
 from django.test import TestCase
 from django.test.client import Client
@@ -46,7 +46,7 @@ class CreatePitchspotTest(TestCase):
         self.assertIsInstance(NewP.owner, object)
         self.assertIsInstance(NewP.admin, object)
         self.assertIsInstance(NewP.is_published, bool)
-        self.assertIsInstance(NewP.date_created, datetime)
+        self.assertIsInstance(NewP.date_created, datetime.datetime)
 
 
 

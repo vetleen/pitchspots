@@ -7,7 +7,7 @@ from django.utils.timezone import utc
 from ps_editor.models import Pitchspot
 
 def create_pitchspot(title, owner, is_published):
-    ''' Creates a pitcspot '''
+    ''' Creates a pitchspot '''
     def set_date_now ():
         ''' Returns current date in UTC-format'''
         return datetime.utcnow().replace(tzinfo=utc)
@@ -18,7 +18,7 @@ def create_pitchspot(title, owner, is_published):
     #p.admin.all()
 
 def get_admin_dict(pitchspot):
-    ''' returns a dict with all admins for the pitchsapot, and uses numbers for keys '''
+    ''' Returns a dict with all admins for the pitchsapot, and uses numbers for keys '''
     admin_dict = {}
     for key, user in enumerate(pitchspot.admin.all()):
         admin_dict.update({key+1: user.username})

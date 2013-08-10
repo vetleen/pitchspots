@@ -23,6 +23,7 @@ def get_admin_dict(pitchspot):
     for key, user in enumerate(pitchspot.admin.all()):
         admin_dict.update({key+1: user.username})
     return admin_dict
+
 #def edit_pitchspot(title, owner, administrator, is_published, date_completed):
 
 

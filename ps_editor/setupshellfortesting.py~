@@ -11,5 +11,5 @@ def setup_shell():
 
 
     print "p1, p2 and p3 created with owner u"
-
+#from ps_editor.setupshellfortesting import setup_shell
 

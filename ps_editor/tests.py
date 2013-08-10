@@ -66,6 +66,12 @@ class PsEditorTests(TestCase):
         
         #Check that we get what we expect
         response = c.get('/pitchspot/1/')
+        #Check that we get the proper responsecode
+        self.assertEqual(response.status_code, 200)
+        #Check that content is as expected
+        self.assertIsInstance(response.content, str)
+        assertIn("a", response.content)
+        
         print response.content    
         print type(response.content)  
           

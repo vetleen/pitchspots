@@ -64,8 +64,8 @@ def get_pitch_spot_as_JSON(pitchspot):
                       'owner': pitchspot.owner.username, 
                       'admin': admin_dict, #this is already a dictionary type
                       'is_published': pitchspot.is_published,
-                      'campaign_manager_firstname': pitchspot.campaign_manager_firstname,
-                      'campaign_manager_lastname': pitchspot.campaign_manager_lastname,
+                      'campaign_manager_firstname': campaign_manager_firstname,
+                      'campaign_manager_lastname': campaign_manager_lastname,
                       'date_created': 
                           {
                           'year': pitchspot.date_created.year,

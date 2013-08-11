@@ -5,7 +5,7 @@ from django.test.client import Client
 from django.contrib.auth.models import User
 
 import ps_editor_logic
-from ps_editor.models import Pitchspot
+from ps_editor.models import Pitchspot, IntroModule
 
 ## SET UP FOR TESTS
 c = Client()    
@@ -18,52 +18,47 @@ def create_test_user(username, password):
     c.login(username=username, password=password)            
         
 class PsEditorTests(TestCase):
-    def test_create_pitchspot(self):
+    def test_pitchspots(self):
         """
-        Tests that new pitchspots are created correctly
+        Tests that pitchspots are created and retrieved correctly
         """
         def assert_that_x_pitchspots_exist(x):
             ''' Checks that x pitchspots exist '''
             number_of_pitchspots = Pitchspot.objects.all().count()
             self.assertEqual(number_of_pitchspots, x)
 
-        #Set up
-        create_test_user(username='fred', password='secret')
-        
-        #Check that no pitchspots has been created yet
-        assert_that_x_pitchspots_exist(0)
-               
-        #Create a Pitchspot
-        response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
 
+        ###Set up
+        #Create user
+        create_test_user(username='fred2', password='secret')        
+        #Create pitchspot
+        response = c.post('/pitchspot/create/', {   'title': 'testspot', 
+                                                    'is_published': 'False',
+                                                    'campaign_manager_firstname': 'Johnny',
+                                                    'campaign_manager_lastname': 'Bravo',
+                                                    })
         #Check that we get the proper responsecode
         self.assertEqual(response.status_code, 200)
-        
-        #Check that a pitchspot has been created
         assert_that_x_pitchspots_exist(1)
-        
+
         #Check that the types are correct
         NewP = Pitchspot.objects.get(id=1)
         
-        #print "date_created is type: %s, and is: %s" % (type(NewP.date_created), NewP.date_created)
         self.assertIsInstance(NewP.title, unicode)
         self.assertIsInstance(NewP.owner, object)
         self.assertIsInstance(NewP.admin, object)
         self.assertIsInstance(NewP.is_published, bool)
         self.assertIsInstance(NewP.date_created, datetime)
-
-    def test_retrieve_pitchspot(self):
-        """
-        Tests that pitchspots are retrieved correctly
-        """
-        ###Set up
-        #Create user
-        create_test_user(username='fred2', password='secret')        
-        #Create pitchspot
-        response = c.post('/pitchspot/create/', {'title': 'testspot', 'is_published': 'False'})
-        #Check that we get the proper responsecode
-        self.assertEqual(response.status_code, 200)
+        self.assertIsInstance(NewP.campaign_manager_firstname, unicode)
+        self.assertIsInstance(NewP.campaign_manager_lastname, unicode)
         
+        #Create intromodule
+        test_intromodule = ps_editor_logic.create_intro_module(  pitchspot=Pitchspot.objects.get(id=1),
+                                                            title="test_title", 
+                                                            bodytext="test bodytext", 
+                                                            ingress="ingress here"
+                                                            )
+
         #Check that we get what we expect
         response = c.get('/pitchspot/1/')
         #Check that we get the proper responsecode
@@ -84,11 +79,14 @@ class PsEditorTests(TestCase):
                                             "fred2",
                                             "true", 
                                             "testspot",
+                                            "1",
+                                            "intromodule_bodytext",
+                                            "intromodule_ingress",
+                                            "intromodule_title"
                                             ]
         for word in words_expected_to_be_in_response:
             self.assertIn(word, response.content)
  
-          
 
 
 

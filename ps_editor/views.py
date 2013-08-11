@@ -21,11 +21,18 @@ def frontpageview(request):
 
 @login_required    
 def create_pitchspot_view(request):
-    title = str(request.POST['title'])
+    title = request.POST['title']
     is_published = request.POST['is_published']
+    campaign_manager_firstname = request.POST['campaign_manager_firstname']
+    campaign_manager_lastname = request.POST['campaign_manager_lastname']
     owner = request.user
-    ps_editor_logic.create_pitchspot(title=title, owner=owner, is_published=is_published)
-    output = "Create pitchspot works.."
+    ps_editor_logic.create_pitchspot(   title=title, 
+                                        owner=owner, 
+                                        is_published=is_published,
+                                        campaign_manager_firstname=campaign_manager_firstname,
+                                        campaign_manager_lastname=campaign_manager_lastname
+                                        )
+    output = "Create pitchspot view.."
     return HttpResponse(output)
 
 def retrieve_pitchspot_view(request, pitchspot_id):

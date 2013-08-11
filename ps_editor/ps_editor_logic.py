@@ -12,7 +12,6 @@ def set_date_now ():
         
 def create_pitchspot(   title, 
                         owner, 
-                        is_published, 
                         campaign_manager_firstname, 
                         campaign_manager_lastname, 
                         campaign_manager_organization=None, 
@@ -21,7 +20,6 @@ def create_pitchspot(   title,
     ''' Creates a pitchspot '''
     MyPitchspot = Pitchspot.objects.create( title=title, 
                                             owner=owner, 
-                                            is_published=is_published, 
                                             date_created=set_date_now(), 
                                             date_last_changed=set_date_now(),
                                             campaign_manager_firstname = campaign_manager_firstname,
@@ -44,7 +42,7 @@ def get_pitch_spot_as_JSON(pitchspot):
             admin_dict.update({key+1: user.username})
         return admin_dict
         
-    #get data from each kind of module
+    #Functions to get data from each kind of module
     def get_intromodule_dict (pitchspot):
         ''' Returns a dict with all intromodules for the pitchspot '''
         intromodule_dict = {}
@@ -56,7 +54,7 @@ def get_pitch_spot_as_JSON(pitchspot):
             intromodule_dict.update({n+1: t_dict})
         return intromodule_dict
     
-    #Go for the return
+    #Get, parse and return data
     admin_dict = get_admin_dict(pitchspot)
     intromodule_dict = get_intromodule_dict(pitchspot)
     pitchspot_dict = {

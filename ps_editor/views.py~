@@ -22,7 +22,8 @@ def frontpageview(request):
 @login_required    
 def create_pitchspot_view(request):
     title = request.POST['title']
-    is_published = request.POST['is_published']
+    if request.POST['is_published']:
+        is_published = request.POST['is_published']
     campaign_manager_firstname = request.POST['campaign_manager_firstname']
     campaign_manager_lastname = request.POST['campaign_manager_lastname']
     owner = request.user
@@ -30,7 +31,7 @@ def create_pitchspot_view(request):
                                         owner=owner, 
                                         is_published=is_published,
                                         campaign_manager_firstname=campaign_manager_firstname,
-                                        campaign_manager_lastname=campaign_manager_firstname
+                                        campaign_manager_lastname=campaign_manager_lastname
                                         )
     output = "Create pitchspot view.."
     return HttpResponse(output)
@@ -41,8 +42,5 @@ def retrieve_pitchspot_view(request, pitchspot_id):
     output = pitchspot_JSON
     return HttpResponse(output)  
 
-
-
-#request.user.pitchspots_owned_set.all()
 
 

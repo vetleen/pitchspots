@@ -146,6 +146,7 @@ INSTALLED_APPS = (
     
     #Mine
     'ps_editor',
+    'user_management'
     #Installs
     #'south',
 )
@@ -180,6 +181,7 @@ LOGGING = {
 }
 TEMPLATE_CONTEXT_PROCESSORS = TCP + (
     'django.core.context_processors.request',
+    'django.contrib.messages.context_processors.messages',
 )
 ########### Parse database configuration from $DATABASE_URL
 #import dj_database_url

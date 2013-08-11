@@ -33,24 +33,33 @@ class PsEditorTests(TestCase):
         create_test_user(username='fred2', password='secret')        
         #Create pitchspot
         response = c.post('/pitchspot/create/', {   'title': 'testspot', 
-                                                    'is_published': 'False',
                                                     'campaign_manager_firstname': 'Johnny',
                                                     'campaign_manager_lastname': 'Bravo',
                                                     })
-        #Check that we get the proper responsecode
+
+        #Check that we get the proper responsecode, and that it worked
         self.assertEqual(response.status_code, 200)
         assert_that_x_pitchspots_exist(1)
-
-        #Check that the types are correct
-        NewP = Pitchspot.objects.get(id=1)
         
-        self.assertIsInstance(NewP.title, unicode)
-        self.assertIsInstance(NewP.owner, object)
-        self.assertIsInstance(NewP.admin, object)
-        self.assertIsInstance(NewP.is_published, bool)
-        self.assertIsInstance(NewP.date_created, datetime)
-        self.assertIsInstance(NewP.campaign_manager_firstname, unicode)
-        self.assertIsInstance(NewP.campaign_manager_lastname, unicode)
+        #Create another pitchspot
+        response = c.post('/pitchspot/create/', {   'title': 'testspot2', 
+                                                    'campaign_manager_firstname': 'Johnny2',
+                                                    'campaign_manager_lastname': 'Bravo2',
+                                                    })
+        #Check that we get the proper responsecode, and that it worked
+        self.assertEqual(response.status_code, 200)
+        assert_that_x_pitchspots_exist(2)
+        
+        #Check that the types are correct
+        p = Pitchspot.objects.get(id=1)
+        
+        self.assertIsInstance(p.title, unicode)
+        self.assertIsInstance(p.owner, object)
+        self.assertIsInstance(p.admin, object)
+        self.assertIsInstance(p.is_published, bool)
+        self.assertIsInstance(p.date_created, datetime)
+        self.assertIsInstance(p.campaign_manager_firstname, unicode)
+        self.assertIsInstance(p.campaign_manager_lastname, unicode)
         
         #Create intromodule
         test_intromodule = ps_editor_logic.create_intro_module(  pitchspot=Pitchspot.objects.get(id=1),
@@ -73,11 +82,9 @@ class PsEditorTests(TestCase):
                                             "month", 
                                             "second", 
                                             "year", 
-                                            "is_published", 
                                             "owner", 
                                             "title", 
                                             "fred2",
-                                            "true", 
                                             "testspot",
                                             "1",
                                             "intromodule_bodytext",

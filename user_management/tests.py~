@@ -18,14 +18,27 @@ class SimpleTest(TestCase):
         """
         Tests that createuserview acts like it should.
         """  
-        #Create a user
+        #Create a user validly
         test_username = "johnnybravo"
         test_password = "godsgifttowomen"       
         response = c.post('/user/create/', {        'email': 'test@test.com', 
                                                     'password': 'test-password',
                                                     })
+        #print response.content
         self.assertEqual(count_objects(User), 1)
-        self.assertEqual(response.statuscode, 200)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("User was successfully created.", response.content)
+
+        #Create a user whos username already exists
+        test_username = "johnnybravo"
+        test_password = "godsgifttowomen"       
+        response = c.post('/user/create/', {        'email': 'test@test.com', 
+                                                    'password': 'test-password',
+                                                    })
+        #print response.content
+        self.assertEqual(count_objects(User), 1)
+        self.assertEqual(response.status_code, 200)
+        self.assertIn("User was successfully created.", response.content)
         
     def test_logoutview(self):
         """

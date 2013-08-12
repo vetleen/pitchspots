@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^user/create/$', 'user_management.views.createnewuserview', name='createnewuserview'),
     url(r'^user/edit/$', 'user_management.views.edituserview', name='edituserview'),
     url(r'^user/changepassword/$', 'user_management.views.changepasswordview', name='changepasswordview'),
-    url(r'^user/delete/$', 'user_management.views.deleteuserview', name='deleteuserview'),
+    #url(r'^user/delete/$', 'user_management.views.deleteuserview', name='deleteuserview'),
     #url(r'^user/loginrequired/$', 'user_management.views.loginrequiredview', name='loginrequiredview'),
 	
 	#### STATIC ####

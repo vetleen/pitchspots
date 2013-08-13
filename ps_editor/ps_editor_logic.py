@@ -13,26 +13,41 @@ def set_date_now ():
 def create_pitchspot(   title, 
                         owner, 
                         campaign_manager_firstname, 
-                        campaign_manager_lastname, 
+                        campaign_manager_lastname,
+                        call_to_action_text=None,
                         campaign_manager_organization=None, 
                         campaign_manager_title=None,
-                        ):
-    ''' Creates a pitchspot '''
+                        is_published=None,
+                    ):
+    '''
+    Creates a pitchspot
+    '''
+    #Create the pitchspot with the required and automatic fields
     MyPitchspot = Pitchspot.objects.create( title=title, 
                                             owner=owner, 
                                             date_created=set_date_now(), 
                                             date_last_changed=set_date_now(),
                                             campaign_manager_firstname = campaign_manager_firstname,
-                                            campaign_manager_lastname = campaign_manager_lastname
-                                            )
+                                            campaign_manager_lastname = campaign_manager_lastname,
+                                          )
 
     MyPitchspot.admin.add(owner)
+
+    #Save optional arguments if they are given
+    if (call_to_action_text is not None and len(call_to_action_text)>=1):
+        MyPitchspot.call_to_action_text = call_to_action_text
+    if (campaign_manager_organization is not None and len(campaign_manager_organization)>=1):
+        MyPitchspot.campaign_manager_organization = campaign_manager_organization
+    if (campaign_manager_title is not None and len(campaign_manager_title)>=1):
+        MyPitchspot.campaign_manager_title=campaign_manager_title
+    if (is_published == "True" or is_published == "False"):
+        MyPitchspot.is_published=is_published    
     MyPitchspot.save()
     
-
-
 def get_pitch_spot_as_JSON(pitchspot):
-    ''' Takes a pitchspot object as an argument and reads it's data into a dict, which it returns '''
+    '''
+    Takes a pitchspot object as an argument and reads it's data into a dict, which it returns.
+    '''
     #Get dictionaries that do into the final dictionary
     
     def get_admin_dict(pitchspot):
@@ -63,6 +78,9 @@ def get_pitch_spot_as_JSON(pitchspot):
                       'is_published': pitchspot.is_published,
                       'campaign_manager_firstname': pitchspot.campaign_manager_firstname,
                       'campaign_manager_lastname': pitchspot.campaign_manager_lastname,
+                      'campaign_manager_organization': pitchspot.campaign_manager_organization,
+                      'campaign_manager_title': pitchspot.campaign_manager_title,
+                      'call_to_action_text': pitchspot.call_to_action_text,
                       'date_created': 
                           {
                           'year': pitchspot.date_created.year,

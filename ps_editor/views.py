@@ -20,14 +20,29 @@ def frontpageview(request):
 
 @login_required    
 def create_pitchspot_view(request):
+    ## Gather the data required ## may ADD validation here, to ensure that all required values have been filled in... 
+    #required fields
     title = request.POST['title']
     campaign_manager_firstname = request.POST['campaign_manager_firstname']
     campaign_manager_lastname = request.POST['campaign_manager_lastname']
-    owner = request.user
-    ps_editor_logic.create_pitchspot(   title=title, 
-                                        owner=owner, 
+    #optional fields
+    campaign_manager_title = request.POST['campaign_manager_title']
+    campaign_manager_organization = request.POST['campaign_manager_organization']
+    call_to_action_text = request.POST['call_to_action_text']
+    is_published = request.POST['is_published']
+    
+    ##Create the pitchspot
+    ps_editor_logic.create_pitchspot(   #required fields
+                                        title=title, 
                                         campaign_manager_firstname=campaign_manager_firstname,
-                                        campaign_manager_lastname=campaign_manager_lastname
+                                        campaign_manager_lastname=campaign_manager_lastname,
+                                        #automatic fields
+                                        owner=request.user,
+                                        #optional fields
+                                        campaign_manager_title=campaign_manager_title,
+                                        campaign_manager_organization=campaign_manager_organization,
+                                        call_to_action_text=call_to_action_text,
+                                        is_published = is_published
                                         )
     output = "Create pitchspot view.."
     return HttpResponse(output)

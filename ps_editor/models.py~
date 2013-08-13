@@ -3,22 +3,24 @@ from django.utils.timezone import utc
 from django.db import models
 from django.contrib.auth.models import User
 
-# Create your models here.
-
 class Pitchspot(models.Model):
-        
-    ## Meta information
-    title = models.CharField(max_length=75)
-    owner = models.ForeignKey(User, related_name="pitchspots_owned_set")
-    admin = models.ManyToManyField(User, blank=True, null=True, related_name="pitchspots_administered_set")
-    is_published = models.BooleanField(default=False)
+    #Automatic fields (Non-optional)
+    owner = models.ForeignKey(User, related_name="pitchspots_owned_set")    
     date_created = models.DateTimeField() 
     date_last_changed = models.DateTimeField()
-    
+        #may be added to manually
+    admin = models.ManyToManyField(User, blank=True, null=True, related_name="pitchspots_administered_set")    
+
+    #Required fields:
+    title = models.CharField(max_length=75)
     campaign_manager_firstname = models.CharField(max_length=50)
     campaign_manager_lastname = models.CharField(max_length=50)
+        
+    #Optional fields
+    is_published = models.BooleanField(default=False)
     campaign_manager_title = models.CharField(max_length=50, blank=True)        
     campaign_manager_organization = models.CharField(max_length=50, blank=True)
+    call_to_action_text = models.CharField(max_length=20, default="I'm interested!")
 
     def __unicode__(self):
         return self.title	
@@ -26,5 +28,4 @@ class Pitchspot(models.Model):
 class IntroModule(models.Model):
     pitchspot = models.ForeignKey(Pitchspot, related_name="intromodule_set")
     title = models.CharField(max_length=75)
-    ingress = models.TextField(blank=True)
     bodytext = models.TextField()

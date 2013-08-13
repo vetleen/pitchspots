@@ -94,7 +94,7 @@ class Ps_EditorTests(TestCase):
         self.assertIsInstance(p2.campaign_manager_firstname, unicode)
         self.assertIsInstance(p2.campaign_manager_lastname, unicode)
 
-    def test_create_intromodule(self):
+    def test_retrieve_pitchspot_as_JSON_view(self):
         """
         Tests that intromodules are created and retrieved correctly
         """
@@ -104,9 +104,11 @@ class Ps_EditorTests(TestCase):
         c.login(username="fred2", password="secret")
         
         #Create pitchspot
-        response = c.post('/pitchspot/create/', {   'title': 'testspot', 
+        response = c.post('/pitchspot/create/', {   #required fields
+                                                    'title': 'testspot', 
                                                     'campaign_manager_firstname': 'Johnny',
                                                     'campaign_manager_lastname': 'Bravo',
+                                                    #optional fields
                                                     'campaign_manager_organization': 'Wayne Corporation',
                                                     'campaign_manager_title': 'President',
                                                     'call_to_action_text': "",
@@ -122,14 +124,8 @@ class Ps_EditorTests(TestCase):
         self.assertEqual(p1.campaign_manager_firstname, 'Johnny')
         self.assertEqual(p1.campaign_manager_lastname, 'Bravo')
         
-        #Create intromodule
-        test_intromodule = ps_editor_logic.create_intro_module(  pitchspot=p1,
-                                                            title="test_title", 
-                                                            bodytext="test_bodytext", 
-                                                            )
-
         #Check that we get what we expect
-        response = c.get('/pitchspot/1/')
+        response = c.get('/pitchspot/JSON/1/')
         self.assertEqual(response.status_code, 200)
         
         #Check that content is as expected
@@ -147,10 +143,6 @@ class Ps_EditorTests(TestCase):
                                             "fred2",
                                             "testspot",
                                             "1",
-                                            "intromodule_bodytext",
-                                            "test_bodytext",
-                                            "intromodule_title",
-                                            "test_title",
                                             "Johnny",
                                             "Bravo",
                                             'campaign_manager_organization', 
@@ -161,11 +153,49 @@ class Ps_EditorTests(TestCase):
                                             "I'm interested!",
                                             ]
         for word in words_expected_to_be_in_response:
-            #self.assertIn(word, response.content)
-            pass
-        #print response.content
+            self.assertIn(word, response.content)
 
+    def test_create_intromodule(self):
+        """
+        Tests that intromodules are created and retrieved correctly
+        """
+        ###Set up
+        #Create and log in user
+        create_test_user(username='fred2', password='secret')
+        c.login(username="fred2", password="secret")
+        
+        #Create pitchspot
+        response = c.post('/pitchspot/create/', {   #required fields
+                                                    'title': 'testspot', 
+                                                    'campaign_manager_firstname': 'Johnny',
+                                                    'campaign_manager_lastname': 'Bravo',
+                                                    #optional fields
+                                                    'campaign_manager_organization': 'Wayne Corporation',
+                                                    'campaign_manager_title': 'President',
+                                                    'call_to_action_text': "",
+                                                    'is_published': "True",
+                                                    })
 
+        #Assert that we get the proper responsecode, and that it worked
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(count_objects(Pitchspot), 1)
+
+        #Assert that there are no IntroModules before we create any
+        self.assertEqual(count_objects(IntroModule), 0)
+        
+        #Create intromodule
+        p1 = Pitchspot.objects.get(id=1)
+        test_intromodule = ps_editor_logic.create_intro_module(  pitchspot=p1,
+                                                            title="test_title", 
+                                                            bodytext="test_bodytext", 
+                                                            )
+        #Assert that we get what we expect
+        self.assertEqual(count_objects(IntroModule), 1)
+        self.assertEqual(len(p1.intromodule_set.all()), 1)
+        im = p1.intromodule_set.get(id=1)
+        self.assertEqual(im.title, "test_title")
+        self.assertEqual(im.bodytext, "test_bodytext")
+        self.assertEqual(im.pitchspot, p1)
 
 
 

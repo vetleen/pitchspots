@@ -14,6 +14,7 @@ urlpatterns = patterns('',
     
     #### PS_EDITOR ####
     url(r'^pitchspot/create/$', 'ps_editor.views.create_pitchspot_view', name='create_pitchspot_view'),
+    url(r'^pitchspot/JSON/(?P<pitchspot_id>\d*)/$', 'ps_editor.views.retrieve_pitchspot_as_JSON_view', name='retrieve_pitchspot_as_JSON_view'),   
     url(r'^pitchspot/(?P<pitchspot_id>\d*)/$', 'ps_editor.views.retrieve_pitchspot_view', name='retrieve_pitchspot_view'),   
 
     #### USER ####    

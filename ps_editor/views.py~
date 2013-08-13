@@ -20,7 +20,8 @@ def frontpageview(request):
 
 @login_required    
 def create_pitchspot_view(request):
-    ## Gather the data required ## may ADD validation here, to ensure that all required values have been filled out... 
+
+    ## Gather the data required ## may ADD validation here, to ensure that all required values have been filled in... 
     #required fields
     title = request.POST['title']
     campaign_manager_firstname = request.POST['campaign_manager_firstname']

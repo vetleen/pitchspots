@@ -20,6 +20,7 @@ def frontpageview(request):
 
 @login_required    
 def create_pitchspot_view(request):
+
     ## Gather the data required ## may ADD validation here, to ensure that all required values have been filled in... 
     #required fields
     title = request.POST['title']
@@ -47,7 +48,7 @@ def create_pitchspot_view(request):
     output = "Create pitchspot view.."
     return HttpResponse(output)
 
-def retrieve_pitchspot_view(request, pitchspot_id):
+def retrieve_pitchspot_as_JSON_view(request, pitchspot_id):
     PitchspotToRetrieve = Pitchspot.objects.get(id=pitchspot_id)
     pitchspot_JSON = ps_editor_logic.get_pitch_spot_as_JSON(PitchspotToRetrieve)    
     output = pitchspot_JSON

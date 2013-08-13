@@ -1,5 +1,4 @@
 #from datetime import datetime  
-
 #from django.utils.timezone import utc
 
 from django.http import HttpResponse
@@ -32,7 +31,7 @@ def createnewuserview (request):
         #create the user
         new_user = User.objects.create_user(username=username, password=password, email=email)
         new_user.save()
-        messages.add_message(request, messages.SUCCESS, 'Your acount was created successfully.')
+        messages.add_message(request, messages.SUCCESS, 'Your account was created successfully.')
         #log the user in
         user = authenticate(username=username, password=password)
         if user is not None:
@@ -51,7 +50,6 @@ def createnewuserview (request):
             messages.add_message(request, messages.ERROR, "Username and password does not match. This probably shouldn't happen at this point.")
             template = "test_template.html"
             return render_to_response(template, {}, context_instance=RequestContext(request))
-
     
 def loginview (request):
     username = request.POST['username']

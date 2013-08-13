@@ -2,7 +2,6 @@ from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
 
-
 c = Client()  
 
 def create_test_user(username, password):
@@ -27,7 +26,7 @@ class SimpleTest(TestCase):
         #
         self.assertEqual(count_objects(User), 1)
         self.assertEqual(response.status_code, 200)
-        self.assertIn("Your acount was created successfully.", response.content)
+        self.assertIn("Your account was created successfully.", response.content)
 
         #Create a user whos username already exists
         test_username = "johnnybravo"

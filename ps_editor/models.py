@@ -26,5 +26,4 @@ class Pitchspot(models.Model):
 class IntroModule(models.Model):
     pitchspot = models.ForeignKey(Pitchspot, related_name="intromodule_set")
     title = models.CharField(max_length=75)
-    ingress = models.TextField(blank=True)
     bodytext = models.TextField()

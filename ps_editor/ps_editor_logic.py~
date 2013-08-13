@@ -42,7 +42,7 @@ def get_pitch_spot_as_JSON(pitchspot):
             admin_dict.update({key+1: user.username})
         return admin_dict
         
-    #get data from each kind of module
+    #Functions to get data from each kind of module
     def get_intromodule_dict (pitchspot):
         ''' Returns a dict with all intromodules for the pitchspot '''
         intromodule_dict = {}
@@ -79,15 +79,14 @@ def get_pitch_spot_as_JSON(pitchspot):
     pitchspot_JSON = json.dumps(pitchspot_dict, sort_keys=True, indent=4, separators=(',', ': '))
     return pitchspot_JSON
 
-def create_intro_module(pitchspot, title, bodytext, ingress=None):
+def create_intro_module(pitchspot, title, bodytext):
     ''' creates an intro_module that will be attached to a pitchspot '''
     #Update information about when the Pitchspot was last changed
     pitchspot.date_last_changed=set_date_now()
     pitchspot.save()
-    
     ingress = None
     #Create the intro-module
-    im = IntroModule.objects.create(pitchspot=pitchspot, title="title", bodytext="bodytext")
+    im = IntroModule.objects.create(pitchspot=pitchspot, title=title, bodytext=bodytext)
     if ingress is not None:
         im.ingress = ingress
     im.save()

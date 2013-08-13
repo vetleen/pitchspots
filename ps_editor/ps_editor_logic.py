@@ -50,7 +50,6 @@ def get_pitch_spot_as_JSON(pitchspot):
             t_dict = {}
             t_dict.update({'intromodule_title': im.title})
             t_dict.update({'intromodule_bodytext': im.bodytext})
-            t_dict.update({'intromodule_ingress': im.ingress})
             intromodule_dict.update({n+1: t_dict})
         return intromodule_dict
     
@@ -79,15 +78,14 @@ def get_pitch_spot_as_JSON(pitchspot):
     pitchspot_JSON = json.dumps(pitchspot_dict, sort_keys=True, indent=4, separators=(',', ': '))
     return pitchspot_JSON
 
-def create_intro_module(pitchspot, title, bodytext, ingress=None):
+def create_intro_module(pitchspot, title, bodytext):
     ''' creates an intro_module that will be attached to a pitchspot '''
     #Update information about when the Pitchspot was last changed
     pitchspot.date_last_changed=set_date_now()
     pitchspot.save()
-    
     ingress = None
     #Create the intro-module
-    im = IntroModule.objects.create(pitchspot=pitchspot, title="title", bodytext="bodytext")
+    im = IntroModule.objects.create(pitchspot=pitchspot, title=title, bodytext=bodytext)
     if ingress is not None:
         im.ingress = ingress
     im.save()

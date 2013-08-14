@@ -4,8 +4,10 @@ from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
 
+import json
+
 import ps_editor_logic
-from ps_editor.models import Pitchspot, IntroModule
+from ps_editor.models import Pitchspot, IntroModule, UserProfile
 
 
 
@@ -179,13 +181,12 @@ class Ps_EditorTests(TestCase):
         #Assert that we get the proper responsecode, and that it worked
         self.assertEqual(response.status_code, 200)
         self.assertEqual(count_objects(Pitchspot), 1)
-        
-        p1 = Pitchspot.objects.get(id=1)
 
         #Assert that there are no IntroModules before we create any
         self.assertEqual(count_objects(IntroModule), 0)
         
         #Create intromodule
+        p1 = Pitchspot.objects.get(id=1)
         test_intromodule = ps_editor_logic.create_intro_module(  pitchspot=p1,
                                                             title="test_title", 
                                                             bodytext="test_bodytext", 
@@ -197,7 +198,8 @@ class Ps_EditorTests(TestCase):
         self.assertEqual(im.title, "test_title")
         self.assertEqual(im.bodytext, "test_bodytext")
         self.assertEqual(im.pitchspot, p1)
-
-
-
-
+        u = UserProfile.objects.get(id=1)
+#        print u.get_dict()
+        print json.dumps(p1.get_dict(), sort_keys=True, indent=4, separators=(',', ': '))
+#        print p1.get_admins_dict()       
+        

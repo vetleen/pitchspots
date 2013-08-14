@@ -4,8 +4,10 @@ from django.test import TestCase
 from django.test.client import Client
 from django.contrib.auth.models import User
 
+import json
+
 import ps_editor_logic
-from ps_editor.models import Pitchspot, IntroModule
+from ps_editor.models import Pitchspot, IntroModule, UserProfile
 
 
 
@@ -196,7 +198,8 @@ class Ps_EditorTests(TestCase):
         self.assertEqual(im.title, "test_title")
         self.assertEqual(im.bodytext, "test_bodytext")
         self.assertEqual(im.pitchspot, p1)
-
-
-
-
+        u = UserProfile.objects.get(id=1)
+#        print u.get_dict()
+#        print json.dumps(p1.get_dict(), sort_keys=True, indent=4, separators=(',', ': '))
+#        print p1.get_admins_dict()       
+        

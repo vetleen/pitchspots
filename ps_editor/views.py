@@ -50,9 +50,8 @@ def create_pitchspot_view(request):
 
 def retrieve_pitchspot_as_JSON_view(request, pitchspot_id):
     PitchspotToRetrieve = Pitchspot.objects.get(id=pitchspot_id)
-    pitchspot_JSON = ps_editor_logic.get_pitch_spot_as_JSON(PitchspotToRetrieve)    
-    output = pitchspot_JSON
+    pitchspot_dict = ps_editor_logic.get_pitch_spot_as_dict(PitchspotToRetrieve)
+    Pitchspot_JSON = ps_editor_logic.make_JSON_from_dict(pitchspot_dict)
+    output = Pitchspot_JSON
     return HttpResponse(output)  
-
-
 

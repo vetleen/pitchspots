@@ -9,6 +9,10 @@ from ps_editor.models import Pitchspot, IntroModule
 def set_date_now ():
     ''' Returns current date in UTC-format'''
     return datetime.utcnow().replace(tzinfo=utc)
+
+def make_JSON_from_dict(pdict):
+    JSON = json.dumps(pdict, sort_keys=True, indent=4, separators=(',', ': '))
+    return JSON
         
 def create_pitchspot(   title, 
                         owner, 
@@ -22,7 +26,7 @@ def create_pitchspot(   title,
     '''
     Creates a pitchspot
     '''
-    #Create the pitchspot with the required fields
+    #Create the pitchspot with the required and automatic fields
     MyPitchspot = Pitchspot.objects.create( title=title, 
                                             owner=owner, 
                                             date_created=set_date_now(), 
@@ -31,7 +35,6 @@ def create_pitchspot(   title,
                                             campaign_manager_lastname = campaign_manager_lastname,
                                           )
 
-    #Add owner to administrator-set
     MyPitchspot.admin.add(owner)
 
     #Save optional arguments if they are given
@@ -45,58 +48,12 @@ def create_pitchspot(   title,
         MyPitchspot.is_published=is_published    
     MyPitchspot.save()
     
-def get_pitch_spot_as_JSON(pitchspot):
+def get_pitch_spot_as_dict(pitchspot):
     '''
     Takes a pitchspot object as an argument and reads it's data into a dict, which it returns.
     '''
-    #Get dictionaries that do into the final dictionary
-    
-    def get_admin_dict(pitchspot):
-        ''' Returns a dict with all admins for the pitchsapot, and uses numbers for keys '''
-        admin_dict = {}
-        for key, user in enumerate(pitchspot.admin.all()):
-            admin_dict.update({key+1: user.username})
-        return admin_dict
-        
-    #Functions to get data from each kind of module
-    def get_intromodule_dict (pitchspot):
-        ''' Returns a dict with all intromodules for the pitchspot '''
-        intromodule_dict = {}
-        for n, im in enumerate (pitchspot.intromodule_set.all()):
-            t_dict = {}
-            t_dict.update({'intromodule_title': im.title})
-            t_dict.update({'intromodule_bodytext': im.bodytext})
-            intromodule_dict.update({n+1: t_dict})
-        return intromodule_dict
-    
-    #Get, parse and return data
-    admin_dict = get_admin_dict(pitchspot)
-    intromodule_dict = get_intromodule_dict(pitchspot)
-    pitchspot_dict = {
-                      'title': pitchspot.title, 
-                      'owner': pitchspot.owner.username, 
-                      'admin': admin_dict, #this is already a dictionary type
-                      'is_published': pitchspot.is_published,
-                      'campaign_manager_firstname': pitchspot.campaign_manager_firstname,
-                      'campaign_manager_lastname': pitchspot.campaign_manager_lastname,
-                      'campaign_manager_organization': pitchspot.campaign_manager_organization,
-                      'campaign_manager_title': pitchspot.campaign_manager_title,
-                      'call_to_action_text': pitchspot.call_to_action_text,
-                      'date_created': 
-                          {
-                          'year': pitchspot.date_created.year,
-                          'month': pitchspot.date_created.month,
-                          'day': pitchspot.date_created.day,
-                          'hour': pitchspot.date_created.hour,
-                          'minute': pitchspot.date_created.minute,
-                          'second': pitchspot.date_created.second,
-                          },
-                      'intromodules': intromodule_dict,
-                      } 
+    return pitchspot.get_dict()
                       
-    pitchspot_JSON = json.dumps(pitchspot_dict, sort_keys=True, indent=4, separators=(',', ': '))
-    return pitchspot_JSON
-
 def create_intro_module(pitchspot, title, bodytext):
     ''' creates an intro_module that will be attached to a pitchspot '''
     #Update information about when the Pitchspot was last changed

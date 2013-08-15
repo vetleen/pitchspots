@@ -60,14 +60,6 @@ def create_intro_module(pitchspot, title, bodytext):
         im.ingress = ingress
     im.save()
     
-def get_pitch_spot_as_dict(pitchspot):
-    '''
-    Takes a pitchspot object as an argument and reads it's data into a dict, which it returns.
-    '''
-    return pitchspot.get_dict()
-                      
-
-
 
 
 

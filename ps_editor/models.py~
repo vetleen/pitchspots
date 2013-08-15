@@ -40,9 +40,16 @@ class Pitchspot(models.Model):
                     'hour': self.date_created.hour,
                     'minute': self.date_created.minute,
                     'second': self.date_created.second,
+                    },    
+                'date_last_changed': 
+                    {
+                    'year': self.date_last_changed.year,
+                    'month': self.date_last_changed.month,
+                    'day': self.date_last_changed.day,
+                    'hour': self.date_last_changed.hour,
+                    'minute': self.date_last_changed.minute,
+                    'second': self.date_last_changed.second,
                     },                
-                
-                'date_last_changed': "self.date_last_changed",
                 'admins': self.get_admins_dict(),
                 
                 'title': self.title,

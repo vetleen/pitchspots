@@ -3,6 +3,16 @@ from django.utils.timezone import utc
 from django.db import models
 from django.contrib.auth.models import User
 
+class UserProfile(User):
+    class Meta:
+        proxy = True
+        
+    def get_dict(self):
+        return {'username': self.username,
+                'first_name': self.first_name,
+                'last_name': self.last_name
+                }
+
 class Pitchspot(models.Model):
     #Automatic fields (Non-optional)
     owner = models.ForeignKey(User, related_name="pitchspots_owned_set")    
@@ -72,15 +82,7 @@ class IntroModule(models.Model):
                 'bodytext': self.bodytext
                 }
     
-class UserProfile(User):
-    class Meta:
-        proxy = True
-        
-    def get_dict(self):
-        return {'username': self.username,
-                'first_name': self.first_name,
-                'last_name': self.last_name
-                }
+
 
 
 

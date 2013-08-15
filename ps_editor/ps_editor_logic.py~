@@ -47,13 +47,7 @@ def create_pitchspot(   title,
     if (is_published == "True" or is_published == "False"):
         MyPitchspot.is_published=is_published    
     MyPitchspot.save()
-    
-def get_pitch_spot_as_dict(pitchspot):
-    '''
-    Takes a pitchspot object as an argument and reads it's data into a dict, which it returns.
-    '''
-    return pitchspot.get_dict()
-                      
+
 def create_intro_module(pitchspot, title, bodytext):
     ''' creates an intro_module that will be attached to a pitchspot '''
     #Update information about when the Pitchspot was last changed
@@ -66,6 +60,8 @@ def create_intro_module(pitchspot, title, bodytext):
         im.ingress = ingress
     im.save()
 
+                      
+def get_intromodule_as_dict
 
 
 
